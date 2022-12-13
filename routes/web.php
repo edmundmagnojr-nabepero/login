@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,5 +15,21 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    //return view('welcome');
+
+    // if(Auth::check()){
+    //     return "the user is logged in";
+    // }
+
+    // $username = 'sfjdslkfs';
+    // $password = 'fdkfdf';
+    // if(Auth::attempt(['username'=>$username, 'password'=>$password])){
+    //     return redirect()->intended();
+    // }
+
+    Auth::logout();
 });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
